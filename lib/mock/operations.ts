@@ -29,12 +29,12 @@ const activity: Activity[] = [
   { id: 'act-5', employeeId: 'emp-a7', action: 'prepared', target: 'Monthly admissions summary', time: '12 days ago', daysAgo: 12 },
 ]
 const cohorts = [
-  { team: 'admissions', daysAgo: 3, students: 204, preparing: 32, review: 22, submitted: 26, decision: 8, documents: 9 },
-  { team: 'counseling', daysAgo: 5, students: 108, preparing: 18, review: 12, submitted: 16, decision: 6, documents: 4 },
-  { team: 'admissions', daysAgo: 18, students: 624, preparing: 60, review: 34, submitted: 48, decision: 18, documents: 19 },
-  { team: 'counseling', daysAgo: 24, students: 312, preparing: 32, review: 18, submitted: 28, decision: 8, documents: 10 },
-  { team: 'admissions', daysAgo: 48, students: 385, preparing: 34, review: 19, submitted: 32, decision: 21, documents: 12 },
-  { team: 'counseling', daysAgo: 62, students: 167, preparing: 19, review: 10, submitted: 19, decision: 12, documents: 7 },
+  { team: 'admissions', daysAgo: 3, students: 204, preparing: 32, review: 22, submitted: 26, decision: 8, documents: 9, missingDocuments: 3 },
+  { team: 'counseling', daysAgo: 5, students: 108, preparing: 18, review: 12, submitted: 16, decision: 6, documents: 4, missingDocuments: 2 },
+  { team: 'admissions', daysAgo: 18, students: 624, preparing: 60, review: 34, submitted: 48, decision: 18, documents: 19, missingDocuments: 5 },
+  { team: 'counseling', daysAgo: 24, students: 312, preparing: 32, review: 18, submitted: 28, decision: 8, documents: 10, missingDocuments: 2 },
+  { team: 'admissions', daysAgo: 48, students: 385, preparing: 34, review: 19, submitted: 32, decision: 21, documents: 12, missingDocuments: 4 },
+  { team: 'counseling', daysAgo: 62, students: 167, preparing: 19, review: 10, submitted: 19, decision: 12, documents: 7, missingDocuments: 3 },
 ] as const
 
 export interface OperationsService {
@@ -45,7 +45,7 @@ export interface OperationsService {
 export const mockOperationsService: OperationsService = {
   getDashboard({ team, range }) {
     const selected = cohorts.filter(c => (team === 'all' || c.team === team) && c.daysAgo < Number(range))
-    const sum = (key: 'students' | 'preparing' | 'review' | 'submitted' | 'decision' | 'documents') => selected.reduce((total, c) => total + c[key], 0)
+    const sum = (key: 'students' | 'preparing' | 'review' | 'submitted' | 'decision' | 'documents' | 'missingDocuments') => selected.reduce((total, c) => total + c[key], 0)
     const factor = range === '7' ? 0.4 : range === '90' ? 1.8 : 1
     const staff = employees.filter(e => team === 'all' || e.team === team).map(e => ({ ...e, completed: Math.round(e.completed * factor), inProgress: Math.round(e.inProgress * factor), overdue: Math.round(e.overdue * factor) }))
     const staffIds = new Set(staff.map(e => e.id))
@@ -59,7 +59,7 @@ export const mockOperationsService: OperationsService = {
       totalTasks: staff.reduce((n, e) => n + e.completed + e.inProgress + e.overdue, 0),
       attention: [
         { id: 'att-1', title: 'Overdue tasks', description: 'Follow-ups waiting for a little attention', count: overdue, kind: 'overdue' },
-        { id: 'att-2', title: 'Documents awaiting review', description: 'Missing or unreviewed application files', count: sum('documents'), kind: 'documents' },
+        { id: 'att-2', title: 'Missing documents', description: 'Required application files not yet provided', count: sum('missingDocuments'), kind: 'documents' },
         { id: 'att-3', title: 'Stale applications', description: 'No progress recorded in over 7 days', count: stale, kind: 'stale' },
         { id: 'att-4', title: 'Lock needs review', description: 'Last heartbeat more than 15 minutes ago', count: activeLocks.filter(l => l.state === 'Needs review').length, kind: 'locks' },
       ].filter(a => a.count > 0) as AttentionItem[],
