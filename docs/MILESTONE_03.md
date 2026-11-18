@@ -37,7 +37,16 @@ All previews state: “Demo navigation only. Real user roles and permissions wil
 - `npm run lint`: passed without warnings.
 - `npm test`: **36 passed across 5 test files**. Includes real Base UI dropdown opening by keyboard and menuitem href assertions in jsdom, employee route rendering, selection/search/sorting, task updates, current mock locks, canonical counts, Student Portal preservation, and existing Admin Dashboard filters.
 - `npm run build`: passed; `/employee-workspace` is included in the production route output.
+- Production HTTP smoke checks: all 14 routes returned 200 (`/admin`, `/employee-workspace`, `/employees`, `/students`, `/students/stu-1`, `/tasks`, `/documents`, `/student-portal`, `/applications`, `/universities`, `/reports`, `/attendance`, `/activity`, `/settings`). This is reachability verification, not browser interaction testing.
 - Browser and responsive tests: **not executed**. Browser runtime discovery returned no connected browser. jsdom tests do not establish browser navigation, visual quality, focus behavior, or responsive rendering. The Playwright flows are included for a connected test environment.
 - The existing UAIS Vercel project was rechecked: `ssoProtection.deploymentType` remains `all_except_custom_domains`. Deployment is preview-only, with no promotion or protection changes.
 
 The milestone remains frontend-only. Real Django authentication, authorization, leases, revisions, uploads, and production integration are outside this change.
+
+## Delivery
+
+- Branch: `feat/milestone-03-employee-workspace`.
+- Commits: `cd0671e` preserves the previous integration baseline; `713b4db` implements Milestone 03. A documentation follow-up records the final deployment and removes an extra trailing blank line.
+- Pull request: https://github.com/AKKarizmi/uais/pull/1 (open, not merged).
+- Protected Vercel Preview: https://uais-ms5gn92qg-akkarizmis-projects.vercel.app . Deployment `dpl_F3Z1ShaXwB5LMFUfRgKhDjdwQr6X` returned **READY** after a successful remote install and build. Its source is implementation commit `713b4db`.
+- An anonymous request to `/employee-workspace` returned HTTP **302** to `vercel.com/sso-api`, confirming the Vercel sign-in gate. No production promotion, custom-domain change, or protection change was made.
