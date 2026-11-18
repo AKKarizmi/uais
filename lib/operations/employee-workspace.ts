@@ -65,6 +65,10 @@ export function studentReadiness(student: Student): string {
     ? "Documents complete"
     : "Needs documents";
 }
+export function upcomingDeadline(value: string, today: number) {
+  const due = demoDate(value);
+  return due !== null && due >= today && due <= today + 7 * 86400000;
+}
 export function selectEmployeeWorkspace(
   data: EmployeeData,
   employeeId: string,

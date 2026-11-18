@@ -1,6 +1,9 @@
 "use client";
+import { WorkSection } from "@/components/operations/work-section";
+import { useDemoContext } from "@/components/demo/use-demo-context";
+import { demoContextStore } from "@/lib/demo/context";
 import Link from "next/link";
-import { useState, type ReactNode } from "react";
+import { useState } from "react";
 import {
   ArrowUpRight,
   CalendarDays,
@@ -16,12 +19,11 @@ import {
 } from "@/components/dashboard/workspace-preview";
 import {
   KpiCard,
-  SectionHeader,
   StatusBadge,
   EmptyState,
 } from "@/components/dashboard/shared";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { useDemoState } from "@/components/operations/demo-state";
 import { PaginatedTable } from "@/components/operations/table";
@@ -49,6 +51,8 @@ import type { PreviewState } from "@/lib/mock/operations";
 
 type SortKey =
   | "code"
+  | "nationality"
+  | "applications"
   | "name"
   | "status"
   | "documents"
@@ -57,40 +61,14 @@ type SortKey =
   | "updated";
 const studentName = (s?: Student) =>
   s ? `${s.firstName} ${s.lastName}` : "Student unavailable";
-function WorkSection({
-  title,
-  description,
-  children,
-  id,
-  action,
-}: {
-  title: string;
-  description: string;
-  children: ReactNode;
-  id?: string;
-  action?: ReactNode;
-}) {
-  return (
-    <section id={id} aria-label={title} className="scroll-mt-5">
-      <Card className="dashboard-card">
-        <CardHeader>
-          <SectionHeader
-            title={title}
-            description={description}
-            action={action}
-          />
-        </CardHeader>
-        <CardContent>{children}</CardContent>
-      </Card>
-    </section>
-  );
-}
 export default function EmployeeWorkspace({
-  initialEmployeeId = "emp-2",
+  initialEmployeeId,
 }: {
   initialEmployeeId?: string;
 }) {
-  const [employeeId, setEmployeeId] = useState(initialEmployeeId);
+  const context = useDemoContext();
+  const employeeId = initialEmployeeId ?? context.employeeId;
+  const setEmployeeId = (id: string) => demoContextStore.selectEmployee(id);
   const [state, setState] = useState<PreviewState>("ready");
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<{ key: SortKey; ascending: boolean }>({
@@ -111,6 +89,8 @@ export default function EmployeeWorkspace({
   const findStudent = (id: string | null) => students.find((s) => s.id === id);
   const priority = (s: Student) => studentPriority(s.id, tasks);
   function sortValue(s: Student, key: SortKey): string | number {
+    if (key === "applications")
+      return applications.filter((a) => a.studentId === s.id).length;
     if (key === "name") return studentName(s);
     if (key === "documents")
       return s.documentsRequired > 0
@@ -370,7 +350,12 @@ export default function EmployeeWorkspace({
                         <tr>
                           {sortHeading("code", "Student ID")}
                           {sortHeading("name", "Student name")}
+                          {sortHeading("nationality", "Nationality")}
                           {sortHeading("status", "Application status")}
+                          {sortHeading(
+                            "applications",
+                            "University applications",
+                          )}
                           {sortHeading("documents", "Document completeness")}
                           {sortHeading("readiness", "Readiness")}
                           {sortHeading("priority", "Priority")}
@@ -383,8 +368,15 @@ export default function EmployeeWorkspace({
                           <tr key={s.id}>
                             <td>{s.code}</td>
                             <td>{studentName(s)}</td>
+                            <td>{s.nationality}</td>
                             <td>
                               <StatusBadge>{s.status}</StatusBadge>
+                            </td>
+                            <td>
+                              {
+                                applications.filter((a) => a.studentId === s.id)
+                                  .length
+                              }
                             </td>
                             <td>
                               {s.documentsVerified}/{s.documentsRequired}{" "}
@@ -520,6 +512,8 @@ export default function EmployeeWorkspace({
                           <th scope="col">Student</th>
                           <th scope="col">Document</th>
                           <th scope="col">Status</th>
+                          <th scope="col">Requirement</th>
+                          <th scope="col">Last update</th>
                           <th scope="col">Review metadata</th>
                           <th scope="col">Lock cue</th>
                         </tr>
@@ -548,6 +542,8 @@ export default function EmployeeWorkspace({
                               <td>
                                 <StatusBadge>{d.status}</StatusBadge>
                               </td>
+                              <td>{d.required ? "Required" : "Optional"}</td>
+                              <td>{d.updated}</td>
                               <td>
                                 <select
                                   className="min-h-9 rounded border bg-background px-2 disabled:opacity-50"

@@ -1,6 +1,6 @@
 # Continuation integration
 
-Milestone 03 extends this integration with `/employee-workspace` and real Workspace Preview navigation. See [Milestone 03 notes](MILESTONE_03.md) for its data rules, changed files, and verification results. Existing integration details below describe the original continuation baseline.
+The expanded Milestone 03 adds staff demo entry, Manager Workspace, centralized preview context, and safe fictional Student Tracker/results, while preserving the earlier Employee Workspace. See [complete Milestone 03 notes](MILESTONE_03_FULL.md) for current behavior and verification. [Earlier employee-only notes](MILESTONE_03.md) and the original continuation details below remain historical records.
 
 ## Inventory and decisions
 

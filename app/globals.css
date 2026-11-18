@@ -10,6 +10,9 @@
 .employee-workspace .table-scroll { max-height: 360px; margin-inline: 0; }
 .employee-workspace .table-scroll td { font-size: 11px; }
 .employee-workspace label:focus-within { outline: 2px solid var(--ring); outline-offset: 3px; }
+.student-results > *, .student-results [data-slot="card-content"] { min-width: 0; }
+.student-results .table-scroll { margin-inline: 0; max-height: 420px; }
+.student-results select { max-width: 100%; }
 
 @theme inline {
   --color-sidebar-ring: var(--sidebar-ring);

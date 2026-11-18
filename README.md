@@ -1,6 +1,6 @@
 # UAIS Web
 
-Next.js 16.4.3 App Router frontend with React 19. The approved dashboard remains at `/admin`; `/` redirects there. Operational routes use the existing shell and a fictional, memory-only demo repository. A refresh resets demo changes. Do not enter real applicant data.
+Next.js 16.4.3 App Router frontend with React 19. `/` redirects to `/login`; the approved dashboard remains at `/admin`. Staff previews and student tracking use the existing shell/components and one fictional, memory-only operational repository. A refresh resets demo changes and preview/sample context. Do not enter real applicant data.
 
 Use Node 24 or newer and the npm lockfile for this continuation:
 
@@ -19,8 +19,10 @@ See [integration notes](docs/INTEGRATION.md) for the inventory, acceptance detai
 
 Vercel uses `npm ci` explicitly. Keep preview deployment protection enabled on the `uais` Vercel project. Only fictional data is shipped. Student upload, imports, account invitations, authentication, browser automation, recording, and autofill are not implemented by this frontend.
 
-Milestone 03 adds [Employee Workspace](http://localhost:3000/employee-workspace). Open **Workspace Preview** on the Admin Dashboard to navigate between Admin Dashboard, Employee Workspace, Employee Management, and the existing Student Portal. The profile menu, sidebar, and Settings also link to the implemented previews.
+Milestone 03 now includes `/login`, `/manager-workspace`, the existing `/employee-workspace`, `/track-application`, and `/track-application/results`. Login's **Admin | Manager | Employee** selector changes the explicit **Explore Demo Workspace** destination. Password entry and real sign-in are disabled. **Workspace Preview** links to Admin Dashboard, Manager Workspace, Employee Workspace, Employee Management, the existing Student Portal, Student Application Tracker, and Back to Login. Sidebar visibility is demo presentation, never access control.
 
 Choose **Preview workspace as** to filter the shared fictional students, tasks, applications, and document workload. This is demo navigation, never authentication or an account switch. Task and document metadata updates share the existing tab-local repository and reset on refresh. Deadlines use the explicit November 14, 2026 snapshot. Readiness describes document completeness only.
 
-See [Milestone 03 delivery notes](docs/MILESTONE_03.md) for changed files, test results, browser limitations, and the protected preview/PR handoff.
+The Student Tracker never matches ordinary ID/email input to a record or claims to send email. Its verification controls are unavailable until server integration. **Explore Sample Student Results** explicitly selects an existing fictional profile; sample context expires after ten minutes and resets on refresh. Direct results access without that context shows a safe access-required state. No files, credentials, staff notes, or raw canonical metadata are shown by the student-facing cards.
+
+See [complete Milestone 03 notes](docs/MILESTONE_03_FULL.md) for current routes, changed modules, actual verification results, API boundaries, limitations, and protected preview/PR delivery. [Earlier employee-only notes](docs/MILESTONE_03.md) are retained as history.

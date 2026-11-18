@@ -1,5 +1,9 @@
 "use client";
-import { WorkspacePreview } from '@/components/dashboard/workspace-preview';
+import {
+  StudentProfileFields,
+  ApplicationStatus,
+} from "@/components/student-tracking/student-cards";
+import { WorkspacePreview } from "@/components/dashboard/workspace-preview";
 import { PaginatedTable } from "./table";
 import { GraduationCap, ShieldCheck } from "lucide-react";
 
@@ -22,7 +26,9 @@ export function StudentPortalFeature(ctx: OperationsContext) {
   const docs = documents.filter((d) => d.studentId === s.id);
   return (
     <div className="student-portal">
-      <div className="mb-4 flex justify-end"><WorkspacePreview/></div>
+      <div className="mb-4 flex justify-end">
+        <WorkspacePreview />
+      </div>
       <div className="portal-welcome">
         <span className="portal-logo">
           <GraduationCap size={22} />
@@ -68,22 +74,16 @@ export function StudentPortalFeature(ctx: OperationsContext) {
           title="My profile"
           sub="To correct your details, contact admissions."
         >
-          <div className="kv">
-            <span>Student ID</span>
-            <strong className="mono">{s.code}</strong>
-          </div>
-          <div className="kv">
-            <span>Full name</span>
-            <strong>{trimName(s)}</strong>
-          </div>
-          <div className="kv">
-            <span>Email</span>
-            <strong>{s.email}</strong>
-          </div>
-          <div className="kv">
-            <span>Nationality</span>
-            <strong>{s.nationality}</strong>
-          </div>
+          <StudentProfileFields
+            personal={{
+              name: trimName(s),
+              code: s.code,
+              email: s.email,
+              phone: s.phone,
+              nationality: s.nationality,
+              updated: s.updated,
+            }}
+          />
           <button
             className="btn btn-light"
             onClick={() =>
@@ -108,7 +108,7 @@ export function StudentPortalFeature(ctx: OperationsContext) {
                     {a.program} · {a.intake}
                   </small>
                 </div>
-                <Pill>{a.status}</Pill>
+                <ApplicationStatus value={a.status} />
               </div>
             ))
           ) : (

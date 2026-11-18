@@ -7,6 +7,7 @@ import { APP_STATUSES, trimName, Panel, Empty } from "./shared";
 import type { OperationsContext } from "./workspace";
 export function ApplicationsFeature(ctx: OperationsContext) {
   const {
+    recordFilter,
     router,
     applications,
     setApplications,
@@ -22,13 +23,25 @@ export function ApplicationsFeature(ctx: OperationsContext) {
   } = ctx;
   const list = applications.filter(
     (a) =>
-      `${trimName(stu(a.studentId))} ${uni(a.universityId)?.name ?? ""} ${a.program}`
+      (!recordFilter || a.id === recordFilter) &&
+      `${a.id} ${trimName(stu(a.studentId))} ${uni(a.universityId)?.name ?? ""} ${a.program}`
         .toLowerCase()
         .includes(query.toLowerCase()) &&
       (statusFilter === "All" || a.status === statusFilter),
   );
   return (
     <>
+      {recordFilter && (
+        <p className="mb-3 text-sm">
+          Viewing a linked fictional application.{" "}
+          <button
+            className="underline"
+            onClick={() => router.push("/applications")}
+          >
+            Show all applications
+          </button>
+        </p>
+      )}
       <div className="toolbar">
         <label className="search-box">
           <Search size={16} />

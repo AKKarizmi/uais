@@ -64,9 +64,11 @@ import {
 export function useOperationsModel({
   screen,
   studentId,
+  recordFilter,
 }: {
   screen: Screen;
   studentId?: string;
+  recordFilter?: string;
 }) {
   const router = useRouter();
   const [preview, setPreview] = useState<PreviewState>("ready");
@@ -1084,6 +1086,7 @@ export function useOperationsModel({
   }
   const summary = headings[screen];
   return {
+    recordFilter,
     searchStudents,
     tab,
     setTab,
@@ -1167,6 +1170,7 @@ export type OperationsContext = ReturnType<typeof useOperationsModel>;
 export default function OperationsWorkspace(props: {
   screen: Screen;
   studentId?: string;
+  recordFilter?: string;
 }) {
   const ctx = useOperationsModel(props);
   const {
@@ -1217,7 +1221,7 @@ export default function OperationsWorkspace(props: {
                     {screen === "employees" && EmployeesFeature(ctx)}
                     {screen === "attendance" && AttendanceFeature(ctx)}
                     {screen === "activity" && ActivityFeature(ctx)}
-                    {screen === "settings" && <SettingsFeature/>}
+                    {screen === "settings" && <SettingsFeature />}
                     {screen === "student-portal" && StudentPortalFeature(ctx)}
                   </>
                 )}
