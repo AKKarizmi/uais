@@ -9,6 +9,7 @@ import {
   Users,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { demoContextStore } from "@/lib/demo/context";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,12 +22,26 @@ import {
 
 export const workspacePreviews = [
   { name: "Admin Dashboard", href: "/admin", icon: LayoutDashboard },
+  { name: "Manager Workspace", href: "/manager-workspace", icon: Users },
   { name: "Employee Workspace", href: "/employee-workspace", icon: Users },
   { name: "Employee Management", href: "/employees", icon: ShieldCheck },
   { name: "Student Portal", href: "/student-portal", icon: GraduationCap },
+  {
+    name: "Student Application Tracker",
+    href: "/track-application",
+    icon: GraduationCap,
+  },
+  { name: "Back to Login", href: "/login", icon: ShieldCheck },
 ] as const;
 export const previewDisclaimer =
-  "Demo navigation only. Real user roles and permissions will be enforced by UAIS Server.";
+  "Workspace previews use fictional data. Real permissions require authenticated UAIS Server sessions.";
+export function previewNavigation(href: string) {
+  if (href === "/admin" || href === "/employees")
+    demoContextStore.enter("admin");
+  else if (href === "/manager-workspace") demoContextStore.enter("manager");
+  else if (href === "/employee-workspace") demoContextStore.enter("employee");
+  else demoContextStore.exit();
+}
 export function WorkspacePreview() {
   const pathname = usePathname();
   return (
@@ -42,13 +57,14 @@ export function WorkspacePreview() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-80">
         <DropdownMenuGroup>
-          <DropdownMenuLabel>Workspace Preview</DropdownMenuLabel>
+          <DropdownMenuLabel>Switch Workspace</DropdownMenuLabel>
           {workspacePreviews.map(({ name, href, icon: Icon }) => (
             <DropdownMenuItem
               key={href}
               render={
                 <Link
                   href={href}
+                  onClick={() => previewNavigation(href)}
                   aria-current={pathname === href ? "page" : undefined}
                 />
               }
