@@ -19,7 +19,7 @@ export function StatusBadge({ children, tone = 'neutral' }: { children: ReactNod
 }
 
 export function DemoModeBanner() {
-  return <div className="demo-banner"><div className="flex items-center gap-2"><FlaskConical className="size-3.5" aria-hidden="true" /><span>UI prototype <span className="mx-1 opacity-40">/</span> demo data</span></div><span className="hidden sm:inline">A preview of your future workspace. No live data connected.</span><Badge variant="outline">Milestone 01</Badge></div>
+  return <div className="demo-banner"><div className="flex items-center gap-2"><FlaskConical className="size-3.5" aria-hidden="true" /><span>UI prototype <span className="mx-1 opacity-40">/</span> demo data</span></div><span className="hidden sm:inline">Fictional data only. No authentication or server-enforced permissions.</span><Badge variant="outline">Demo</Badge></div>
 }
 
 export function SectionHeader({ title, description, action }: { title: string; description?: string; action?: ReactNode }) {

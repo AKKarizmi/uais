@@ -1,0 +1,1134 @@
+{
+  "schema_version": "1.0",
+  "description": "Canonical field catalog. Country/portal neutral; regional fields live under metadata extensions.",
+  "fields": [
+    {
+      "canonical_name": "full_name",
+      "metadata_path": "identity.full_name",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "first_name",
+      "metadata_path": "identity.first_name",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "last_name",
+      "metadata_path": "identity.last_name",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "chinese_name",
+      "metadata_path": "regional.china.chinese_name",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "gender",
+      "metadata_path": "identity.gender",
+      "field_type": "select",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "date_of_birth",
+      "metadata_path": "identity.date_of_birth",
+      "field_type": "date",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "place_of_birth",
+      "metadata_path": "identity.birth.place",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "place_of_birth_city",
+      "metadata_path": "identity.birth.city",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "place_of_birth_region",
+      "metadata_path": "identity.birth.region",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "place_of_birth_country",
+      "metadata_path": "identity.birth.country",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "nationality",
+      "metadata_path": "identity.nationality",
+      "field_type": "select",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "marital_status",
+      "metadata_path": "identity.marital_status",
+      "field_type": "select",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "religion",
+      "metadata_path": "identity.religion",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "native_language",
+      "metadata_path": "identity.native_language",
+      "field_type": "select",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "is_ethnic_chinese",
+      "metadata_path": "regional.china.is_ethnic_chinese",
+      "field_type": "boolean",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "is_immigrant",
+      "metadata_path": "identity.is_immigrant",
+      "field_type": "boolean",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "parents_chinese_citizens",
+      "metadata_path": "regional.china.parents_chinese_citizens",
+      "field_type": "boolean",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "health_status",
+      "metadata_path": "health.status",
+      "field_type": "select",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "medical_history",
+      "metadata_path": "health.has_medical_history",
+      "field_type": "boolean",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "allergic_history",
+      "metadata_path": "health.has_allergic_history",
+      "field_type": "boolean",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "smoking_history",
+      "metadata_path": "health.smoking_history",
+      "field_type": "boolean",
+      "section": "additional_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "occupation",
+      "metadata_path": "employment.occupation",
+      "field_type": "select",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "occupation_status",
+      "metadata_path": "employment.status",
+      "field_type": "select",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "current_employer",
+      "metadata_path": "employment.current_employer",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "worked_in_china",
+      "metadata_path": "regional.china.worked_in_china",
+      "field_type": "boolean",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "passport_type",
+      "metadata_path": "passport.type",
+      "field_type": "select",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "passport_number",
+      "metadata_path": "passport.number",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "passport_issue_date",
+      "metadata_path": "passport.issue_date",
+      "field_type": "date",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "passport_expiry_date",
+      "metadata_path": "passport.expiry_date",
+      "field_type": "date",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "has_valid_china_visa",
+      "metadata_path": "regional.china.visa.has_valid_visa",
+      "field_type": "boolean",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "visa_embassy",
+      "metadata_path": "regional.china.visa.embassy",
+      "field_type": "select",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_photo",
+      "metadata_path": "documents.personal_photo",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "home_address",
+      "metadata_path": "contact.home.address",
+      "field_type": "textarea",
+      "section": "contact_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "home_city",
+      "metadata_path": "contact.home.city",
+      "field_type": "text",
+      "section": "contact_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "home_country",
+      "metadata_path": "contact.home.country",
+      "field_type": "select",
+      "section": "contact_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "home_zip_code",
+      "metadata_path": "contact.home.postal_code",
+      "field_type": "text",
+      "section": "contact_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "home_phone",
+      "metadata_path": "contact.home.phone",
+      "field_type": "text",
+      "section": "contact_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "current_address_same_as_home",
+      "metadata_path": "contact.current.same_as_home",
+      "field_type": "boolean",
+      "section": "contact_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "current_address",
+      "metadata_path": "contact.current.address",
+      "field_type": "textarea",
+      "section": "contact_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "current_city",
+      "metadata_path": "contact.current.city",
+      "field_type": "text",
+      "section": "contact_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "current_country",
+      "metadata_path": "contact.current.country",
+      "field_type": "select",
+      "section": "contact_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "current_zip_code",
+      "metadata_path": "contact.current.postal_code",
+      "field_type": "text",
+      "section": "contact_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "mobile_phone",
+      "metadata_path": "contact.mobile_phone",
+      "field_type": "text",
+      "section": "contact_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "email",
+      "metadata_path": "contact.email",
+      "field_type": "text",
+      "section": "contact_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "wechat_id",
+      "metadata_path": "contact.social.wechat",
+      "field_type": "text",
+      "section": "contact_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "is_in_china_now",
+      "metadata_path": "regional.china.currently_in_china",
+      "field_type": "boolean",
+      "section": "contact_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "residency_city",
+      "metadata_path": "contact.residency_city",
+      "field_type": "text",
+      "section": "contact_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "years_in_home_country",
+      "metadata_path": "contact.years_in_home_country",
+      "field_type": "text",
+      "section": "contact_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "emergency_contact_name",
+      "metadata_path": "emergency_contact.name",
+      "field_type": "text",
+      "section": "contact_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "emergency_contact_relationship",
+      "metadata_path": "emergency_contact.relationship",
+      "field_type": "select",
+      "section": "contact_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "emergency_contact_phone",
+      "metadata_path": "emergency_contact.phone",
+      "field_type": "text",
+      "section": "contact_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "reference_1_name",
+      "metadata_path": "referees.0.name",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "reference_1_organization",
+      "metadata_path": "referees.0.organization",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "reference_1_phone",
+      "metadata_path": "referees.0.phone",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "reference_2_name",
+      "metadata_path": "referees.1.name",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "reference_2_organization",
+      "metadata_path": "referees.1.organization",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "reference_2_phone",
+      "metadata_path": "referees.1.phone",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "highest_degree",
+      "metadata_path": "education.highest_degree",
+      "field_type": "select",
+      "section": "education_history",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "highest_education_institution",
+      "metadata_path": "education.summary.highest_institution",
+      "field_type": "text",
+      "section": "education_history",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "school_name_bachelor",
+      "metadata_path": "education.summary.bachelor_institution",
+      "field_type": "text",
+      "section": "education_history",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "university_name_master_doctoral",
+      "metadata_path": "education.summary.postgraduate_institution",
+      "field_type": "text",
+      "section": "education_history",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "major",
+      "metadata_path": "education.summary.highest_major",
+      "field_type": "text",
+      "section": "education_history",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "gpa",
+      "metadata_path": "education.summary.highest_gpa",
+      "field_type": "text",
+      "section": "education_history",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "gpa_scale",
+      "metadata_path": "education.summary.gpa_scale",
+      "field_type": "select",
+      "section": "education_history",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "education_start_date",
+      "metadata_path": "education.summary.start_date",
+      "field_type": "date",
+      "section": "education_history",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "education_end_date",
+      "metadata_path": "education.summary.end_date",
+      "field_type": "date",
+      "section": "education_history",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "has_studied_in_china",
+      "metadata_path": "regional.china.has_studied_in_china",
+      "field_type": "boolean",
+      "section": "education_history",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "english_proficiency",
+      "metadata_path": "languages.english.proficiency",
+      "field_type": "select",
+      "section": "education_history",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "english_certificate_type",
+      "metadata_path": "languages.english.certificate_type",
+      "field_type": "select",
+      "section": "education_history",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "english_score",
+      "metadata_path": "languages.english.score",
+      "field_type": "text",
+      "section": "education_history",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "hsk_level",
+      "metadata_path": "regional.china.hsk.level",
+      "field_type": "select",
+      "section": "education_history",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "hsk_score",
+      "metadata_path": "regional.china.hsk.score",
+      "field_type": "text",
+      "section": "education_history",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "hsk_listening_score",
+      "metadata_path": "regional.china.hsk.listening_score",
+      "field_type": "text",
+      "section": "education_history",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "hsk_reading_score",
+      "metadata_path": "regional.china.hsk.reading_score",
+      "field_type": "text",
+      "section": "education_history",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "hsk_writing_score",
+      "metadata_path": "regional.china.hsk.writing_score",
+      "field_type": "text",
+      "section": "education_history",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "hsk_certificate_number",
+      "metadata_path": "regional.china.hsk.certificate_number",
+      "field_type": "text",
+      "section": "education_history",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "hskk_level",
+      "metadata_path": "regional.china.hskk.level",
+      "field_type": "select",
+      "section": "education_history",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "is_csc_applicant",
+      "metadata_path": "scholarships.csc.is_applicant",
+      "field_type": "boolean",
+      "section": "additional_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "apply_for_scholarship",
+      "metadata_path": "scholarships.general.apply",
+      "field_type": "boolean",
+      "section": "additional_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "scholarship_reasons",
+      "metadata_path": "scholarships.general.reasons",
+      "field_type": "textarea",
+      "section": "additional_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "accept_alternate_major",
+      "metadata_path": "application_preferences.accept_alternate_major",
+      "field_type": "boolean",
+      "section": "additional_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "willing_self_financed",
+      "metadata_path": "finance.willing_self_financed",
+      "field_type": "boolean",
+      "section": "additional_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "can_cover_fees",
+      "metadata_path": "finance.can_cover_fees",
+      "field_type": "boolean",
+      "section": "additional_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "has_criminal_record",
+      "metadata_path": "legal.has_criminal_record",
+      "field_type": "boolean",
+      "section": "additional_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "admission_notice_collection",
+      "metadata_path": "application_preferences.admission_notice_collection",
+      "field_type": "select",
+      "section": "additional_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "father_full_name",
+      "metadata_path": "family.father.full_name",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "father_first_name",
+      "metadata_path": "family.father.first_name",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "father_last_name",
+      "metadata_path": "family.father.last_name",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "father_is_alive",
+      "metadata_path": "family.father.is_alive",
+      "field_type": "boolean",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "father_date_of_birth",
+      "metadata_path": "family.father.date_of_birth",
+      "field_type": "date",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "father_phone_number",
+      "metadata_path": "family.father.phone",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "father_mobile_number",
+      "metadata_path": "family.father.mobile",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "father_occupation",
+      "metadata_path": "family.father.occupation",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "mother_full_name",
+      "metadata_path": "family.mother.full_name",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "mother_first_name",
+      "metadata_path": "family.mother.first_name",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "mother_last_name",
+      "metadata_path": "family.mother.last_name",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "mother_is_alive",
+      "metadata_path": "family.mother.is_alive",
+      "field_type": "boolean",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "mother_date_of_birth",
+      "metadata_path": "family.mother.date_of_birth",
+      "field_type": "date",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "mother_phone_number",
+      "metadata_path": "family.mother.phone",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "mother_mobile_number",
+      "metadata_path": "family.mother.mobile",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "mother_occupation",
+      "metadata_path": "family.mother.occupation",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "financial_supporter_name",
+      "metadata_path": "finance.supporter.name",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "financial_supporter_relationship",
+      "metadata_path": "finance.supporter.relationship",
+      "field_type": "select",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "guarantor_in_china_name",
+      "metadata_path": "regional.china.guarantor.name",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "guarantor_in_china_phone",
+      "metadata_path": "regional.china.guarantor.phone",
+      "field_type": "text",
+      "section": "personal_information",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_passport",
+      "metadata_path": "documents.passport",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_passport_visa_page",
+      "metadata_path": "documents.passport_visa_page",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_high_school_diploma",
+      "metadata_path": "documents.high_school_diploma",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_high_school_transcript",
+      "metadata_path": "documents.high_school_transcript",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_transcript",
+      "metadata_path": "documents.transcript",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_degree_transcript",
+      "metadata_path": "documents.degree_transcript",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_degree_certificate",
+      "metadata_path": "documents.degree_certificate",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_expected_graduation_certificate",
+      "metadata_path": "documents.expected_graduation_certificate",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_study_plan",
+      "metadata_path": "documents.study_plan",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_recommendation_letter_1",
+      "metadata_path": "documents.recommendation_letter_1",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_recommendation_letter_2",
+      "metadata_path": "documents.recommendation_letter_2",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_hsk_certificate",
+      "metadata_path": "documents.hsk_certificate",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_english_certificate",
+      "metadata_path": "documents.english_certificate",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_csca_score",
+      "metadata_path": "documents.csca_score",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_bank_statement",
+      "metadata_path": "documents.bank_statement",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_financial_guarantee_form",
+      "metadata_path": "documents.financial_guarantee_form",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_physical_examination",
+      "metadata_path": "documents.physical_examination",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_blood_test_hiv",
+      "metadata_path": "documents.blood_test_hiv",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_blood_test_vdrl",
+      "metadata_path": "documents.blood_test_vdrl",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_blood_test_hbsag",
+      "metadata_path": "documents.blood_test_hbsag",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_blood_test_hcv",
+      "metadata_path": "documents.blood_test_hcv",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_non_criminal_record",
+      "metadata_path": "documents.non_criminal_record",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_commitment_letter",
+      "metadata_path": "documents.commitment_letter",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_cv",
+      "metadata_path": "documents.cv",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_scholarship_form",
+      "metadata_path": "documents.scholarship_form",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_acceptance_letter",
+      "metadata_path": "documents.acceptance_letter",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_application_fee_receipt",
+      "metadata_path": "documents.application_fee_receipt",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_electronic_signature",
+      "metadata_path": "documents.electronic_signature",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_national_id",
+      "metadata_path": "documents.national_id",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_father_national_id",
+      "metadata_path": "documents.father_national_id",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_mother_national_id",
+      "metadata_path": "documents.mother_national_id",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_monograph",
+      "metadata_path": "documents.monograph",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_previous_visa_residence_permit",
+      "metadata_path": "documents.previous_visa_residence_permit",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_work_experience_letters",
+      "metadata_path": "documents.work_experience_letters",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_other_supporting",
+      "metadata_path": "documents.other_supporting_documents",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    },
+    {
+      "canonical_name": "document_introduction_video",
+      "metadata_path": "documents.introduction_video",
+      "field_type": "upload",
+      "section": "documents",
+      "description": null,
+      "source": "legacy-v2"
+    }
+  ]
+}
