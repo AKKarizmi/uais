@@ -1,0 +1,228 @@
+{
+  "schema_version": "1.0",
+  "description": "Logical document types and per-student directories.",
+  "documents": {
+    "personal_photo": {
+      "directory": "Documents/Personal Photo",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_photo"
+    },
+    "passport": {
+      "directory": "Documents/Passport",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_passport"
+    },
+    "passport_visa_page": {
+      "directory": "Documents/Passport Visa Page",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_passport_visa_page"
+    },
+    "high_school_diploma": {
+      "directory": "Documents/High School Diploma",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_high_school_diploma"
+    },
+    "high_school_transcript": {
+      "directory": "Documents/High School Transcript",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_high_school_transcript"
+    },
+    "transcript": {
+      "directory": "Documents/Transcript",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_transcript"
+    },
+    "degree_transcript": {
+      "directory": "Documents/University Transcript",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_degree_transcript"
+    },
+    "degree_certificate": {
+      "directory": "Documents/University Diploma",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_degree_certificate"
+    },
+    "expected_graduation_certificate": {
+      "directory": "Documents/Expected Graduation Certificate",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_expected_graduation_certificate"
+    },
+    "study_plan": {
+      "directory": "Documents/Study Plan",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_study_plan"
+    },
+    "recommendation_letter_1": {
+      "directory": "Documents/Recommendation Letter One",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_recommendation_letter_1"
+    },
+    "recommendation_letter_2": {
+      "directory": "Documents/Recommendation Letter Two",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_recommendation_letter_2"
+    },
+    "hsk_certificate": {
+      "directory": "Documents/HSK Certificate",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_hsk_certificate"
+    },
+    "english_certificate": {
+      "directory": "Documents/English Certificate",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_english_certificate"
+    },
+    "csca_score": {
+      "directory": "Documents/CSCA Score",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_csca_score"
+    },
+    "bank_statement": {
+      "directory": "Documents/Bank Statement",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_bank_statement"
+    },
+    "financial_guarantee_form": {
+      "directory": "Documents/Financial Guarantee",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_financial_guarantee_form"
+    },
+    "physical_examination": {
+      "directory": "Documents/Physical Examination",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_physical_examination"
+    },
+    "blood_test_hiv": {
+      "directory": "Documents/Blood Test HIV",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_blood_test_hiv"
+    },
+    "blood_test_vdrl": {
+      "directory": "Documents/Blood Test VDRL",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_blood_test_vdrl"
+    },
+    "blood_test_hbsag": {
+      "directory": "Documents/Blood Test HBsAg",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_blood_test_hbsag"
+    },
+    "blood_test_hcv": {
+      "directory": "Documents/Blood Test HCV",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_blood_test_hcv"
+    },
+    "non_criminal_record": {
+      "directory": "Documents/Non-Criminal Record",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_non_criminal_record"
+    },
+    "commitment_letter": {
+      "directory": "Documents/Commitment Letter",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_commitment_letter"
+    },
+    "cv": {
+      "directory": "Documents/CV Resume",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_cv"
+    },
+    "scholarship_form": {
+      "directory": "Documents/Scholarship Form",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_scholarship_form"
+    },
+    "acceptance_letter": {
+      "directory": "Documents/Acceptance Letter",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_acceptance_letter"
+    },
+    "application_fee_receipt": {
+      "directory": "Documents/Application Fee Receipt",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_application_fee_receipt"
+    },
+    "electronic_signature": {
+      "directory": "Documents/Electronic Signature",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_electronic_signature"
+    },
+    "national_id": {
+      "directory": "Documents/National ID",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_national_id"
+    },
+    "father_national_id": {
+      "directory": "Documents/Father National ID",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_father_national_id"
+    },
+    "mother_national_id": {
+      "directory": "Documents/Mother National ID",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_mother_national_id"
+    },
+    "monograph": {
+      "directory": "Documents/Monograph",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_monograph"
+    },
+    "previous_visa_residence_permit": {
+      "directory": "Documents/Previous Visa Residence Permit",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_previous_visa_residence_permit"
+    },
+    "work_experience_letters": {
+      "directory": "Documents/Work Experience Letters",
+      "multiple": true,
+      "preferred_file": null,
+      "legacy_canonical": "document_work_experience_letters"
+    },
+    "other_supporting_documents": {
+      "directory": "Documents/Other Supporting Documents",
+      "multiple": true,
+      "preferred_file": null,
+      "legacy_canonical": "document_other_supporting"
+    },
+    "introduction_video": {
+      "directory": "Documents/Introduction Video",
+      "multiple": false,
+      "preferred_file": null,
+      "legacy_canonical": "document_introduction_video"
+    }
+  }
+}
