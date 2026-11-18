@@ -45,8 +45,17 @@ New pure selectors/helpers: `lib/operations/{manager-workspace,student-facing}` 
 - `npm test`: **59 tests passed across 7 files**, including login role descriptions/navigation, disabled credentials, exit context, manager filters/assignments/task creation, exact application IDs, lookup non-enumeration, sample selection/expiry, personal-field projection, deduplicated university counts, requirement-aware documents, status outcomes, prior employee/admin/portal behavior, editing locks, schema counts and report export protections.
 - `npm run build`: passed; all new routes are in the App Router build output.
 - Local production HTTP checks matched expected rendered content for `/login`, `/admin`, `/manager-workspace`, `/employee-workspace`, `/students`, `/student-portal`, `/track-application` and `/track-application/results`. Direct results showed the access-required heading and no selected sample email. `/` followed its redirect to `/login`.
+- All 18 page routes returned 200 locally; the additional `/applications?record=app-1` check confirmed exact record filtering, without showing the `app-2` status control.
 - Browser/runtime discovery returned no connected browser. Playwright staff/student and mobile flows are included in `tests/browser/staff-student-journeys.spec.ts` but **not executed**. jsdom interactions and HTTP content checks do not verify browser navigation, real focus behavior, screenshots or responsive layouts. These remain QA limitations.
 
 ## Production boundary
 
 Password sign-in, reset delivery, ordinary student lookup/verification, private file transfer, authoritative roles, server sessions, persistence, CSRF enforcement and multi-user permissions are not implemented. Frontend selection/filtering and sample expiry provide no production security. The demo contains fictional data only and requires the existing protected Vercel Preview. Do not promote to production, attach a public domain or introduce real applicant records.
+
+## Delivery
+
+- Implementation commit: `a24d001` on `feat/m03-staff-manager-student-tracking`.
+- Pull request: https://github.com/AKKarizmi/uais/pull/2 . This is stacked on the earlier Employee Workspace branch/PR #1; merge that prerequisite before this extension. Neither PR was merged by this work.
+- Protected preview: https://uais-7jcca785c-akkarizmis-projects.vercel.app/login . Deployment `dpl_DcLytBuz3jevj8sk2vyuTW7tBLE2` is **Ready**, target **preview**, confirmed with `vercel inspect`.
+- Signed-in Vercel CLI HTTP requests verified expected deployed H1 content on all eight required routes listed above. The direct results page showed the safe access-required heading and no selected sample email. These are HTTP content checks, not browser interaction tests.
+- An anonymous request to `/track-application/results` returned HTTP **302** to `vercel.com/sso-api`, confirming the Vercel sign-in gate. The existing project's SSO mode remains `all_except_custom_domains`. No production promotion, public custom domain or protection-disabling change was made.
