@@ -4,6 +4,7 @@ import { ShieldCheck } from "lucide-react";
 
 import { Field, Panel, Empty } from "./shared";
 import type { OperationsContext } from "./workspace";
+import { downloadText, reportBundleHtml } from "@/lib/operations/reports";
 export function ReportsFeature(ctx: OperationsContext) {
   const {
     reportType,
@@ -18,8 +19,66 @@ export function ReportsFeature(ctx: OperationsContext) {
     <>
       <Panel
         title="Report builder"
-        sub="Interactive HTML reports remain a separate, configurable module; detailed definitions can be added in a later release."
+        sub="Seven UAIS datasets with search, sorting, printable offline HTML and guarded CSV. Attendance is presence, not work hours."
       >
+        <div
+          className="desktop-tabs"
+          role="tablist"
+          aria-label="Report datasets"
+        >
+          {Object.keys(allReports).map((name, i, names) => (
+            <button
+              key={name}
+              role="tab"
+              id={`report-tab-${i}`}
+              aria-controls="report-dataset"
+              tabIndex={name === reportType ? 0 : -1}
+              aria-selected={name === reportType}
+              onClick={() => {
+                setReportType(name);
+                setReportQuery("");
+              }}
+              onKeyDown={(e) => {
+                if (
+                  ["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)
+                ) {
+                  e.preventDefault();
+                  const next =
+                    e.key === "Home"
+                      ? 0
+                      : e.key === "End"
+                        ? names.length - 1
+                        : (i +
+                            (e.key === "ArrowRight" ? 1 : names.length - 1)) %
+                          names.length;
+                  setReportType(names[next]);
+                  setReportQuery("");
+                  document.getElementById(`report-tab-${next}`)?.focus();
+                }
+              }}
+            >
+              {name}
+            </button>
+          ))}
+        </div>
+        <div className="desktop-toolbar">
+          <button
+            className="desktop-button"
+            onClick={() =>
+              downloadText(
+                "uais-seven-datasets-fictional.html",
+                reportBundleHtml(allReports),
+                "text/html;charset=utf-8",
+              )
+            }
+          >
+            Export all seven tabs · HTML
+          </button>
+          <span className="desktop-muted">
+            All rows in the seven-tab export; current filter applies to
+            individual exports above.
+          </span>
+        </div>
         <div className="report-config">
           <Field label="Report dataset">
             <select
@@ -48,26 +107,32 @@ export function ReportsFeature(ctx: OperationsContext) {
             <small>Export includes current filters</small>
           </div>
         </div>
-        <PaginatedTable>
-          <table>
-            <thead>
-              <tr>
-                {reportColumns.map((c) => (
-                  <th key={c}>{c}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {reportRows.map((row, i) => (
-                <tr key={i}>
+        <div
+          role="tabpanel"
+          id="report-dataset"
+          aria-labelledby={`report-tab-${Object.keys(allReports).indexOf(reportType)}`}
+        >
+          <PaginatedTable>
+            <table>
+              <thead>
+                <tr>
                   {reportColumns.map((c) => (
-                    <td key={c}>{String(row[c] ?? "")}</td>
+                    <th key={c}>{c}</th>
                   ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </PaginatedTable>
+              </thead>
+              <tbody>
+                {reportRows.map((row, i) => (
+                  <tr key={i}>
+                    {reportColumns.map((c) => (
+                      <td key={c}>{String(row[c] ?? "")}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </PaginatedTable>
+        </div>
         {reportRows.length === 0 && (
           <Empty text="No matching report records." />
         )}

@@ -36,6 +36,8 @@ import {
   ShieldCheck,
   Sun,
   Users,
+  Video,
+  TerminalSquare,
   X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -72,6 +74,11 @@ const navigation = [
   { name: "Dashboard", icon: LayoutDashboard },
   { name: "Students", icon: GraduationCap },
   { name: "Universities", icon: Building2 },
+  { name: "Recorder", icon: Video },
+  { name: "System & Resolver", icon: TerminalSquare },
+];
+const webNavigation = [
+  { name: "Admin Analytics", icon: ChartNoAxesCombined },
   { name: "Applications", icon: Files },
   { name: "Tasks", icon: ClipboardList },
   { name: "Documents", icon: BookOpen },
@@ -96,30 +103,29 @@ export function SidebarNav({
   const role = roleForPath(pathname, context.role);
   const primary =
     role === "employee"
-      ? navigation.filter((n) =>
-          ["Dashboard", "Students", "Tasks", "Documents"].includes(n.name),
-        )
-      : navigation;
-  const dashboard =
-    role === "manager"
-      ? "/manager-workspace"
-      : role === "employee"
-        ? "/employee-workspace"
-        : "/admin";
+      ? webNavigation.filter((n) => ["Tasks", "Documents"].includes(n.name))
+      : webNavigation.filter(
+          (n) => role === "admin" || n.name !== "Admin Analytics",
+        );
+  const dashboard = "/dashboard";
   const hrefFor = (name: string) =>
     name === "Dashboard"
       ? dashboard
-      : name === "Team Overview"
-        ? "/manager-workspace#team-overview"
-        : name === "Student Application Tracker"
-          ? "/track-application"
-          : name === "Back to Login"
-            ? "/login"
-            : name === "Activity Log"
-              ? "/activity"
-              : name === "Employee Management"
-                ? "/employees"
-                : `/${name.toLowerCase().replaceAll(" ", "-")}`;
+      : name === "System & Resolver"
+        ? "/system-resolver"
+        : name === "Admin Analytics"
+          ? "/admin"
+          : name === "Team Overview"
+            ? "/manager-workspace#team-overview"
+            : name === "Student Application Tracker"
+              ? "/track-application"
+              : name === "Back to Login"
+                ? "/login"
+                : name === "Activity Log"
+                  ? "/activity"
+                  : name === "Employee Management"
+                    ? "/employees"
+                    : `/${name.toLowerCase().replaceAll(" ", "-")}`;
   const navLink = ({ name, icon: Icon }: (typeof navigation)[number]) => (
     <Link
       key={name}
@@ -164,10 +170,8 @@ export function SidebarNav({
           <GraduationCap size={23} strokeWidth={1.7} />
         </span>
         <span>
-          <strong>
-            UAIS<span className="brand-web">web</span>
-          </strong>
-          <small>OPERATIONS HUB</small>
+          <strong>Admissions Hub</strong>
+          <small>Intelligent admissions workspace</small>
         </span>
       </Link>
       <div className="workspace-label">
@@ -179,7 +183,9 @@ export function SidebarNav({
         <LockKeyhole size={13} />
       </div>
       <nav aria-label="Main navigation">
-        <div className="nav-label">WORKSPACE</div>
+        <div className="nav-label">UAIS CORE</div>
+        {navigation.map(navLink)}
+        <div className="nav-label administration-label">WEB OPERATIONS</div>
         {primary.map(navLink)}
         {role === "admin" && (
           <>

@@ -5,7 +5,8 @@ The backend is the authoritative source of shared records; neither the browser n
 ## Objects
 
 - `Student`: UUID internal ID, stable public code, `revision` integer, metadata JSONB using **canonical field identifiers** and vetted paths, assignment ID, creation/update metadata, soft archive state.
-- `University`: ID, name, normalized country, verified website and portal URLs, provider family and detection provenance, active status.
+- `University`: stable ID/code, name, country, city, website, notes and active status. Portal registration is a separate one-to-many entity.
+- `Portal`: stable ID, university ID, name, purpose, URL, portal family, family source (`auto`/`manual`), active flag, recording/automation metadata and notes. A university may have zero or many portals.
 - `Application`: unique ID, student ID, university ID, program/intake, internal stage, submission evidence, assigned officer, deadlines.
 - `Document`: immutable version ID, student ID, canonical document category, private object key, checksum, review state and reviewer; category requirements are separate policy records.
 - `Task`: ID, owner, assignee, status, priority, deadline, application/student linkage, comments and audit trail.
@@ -21,6 +22,7 @@ The backend is the authoritative source of shared records; neither the browser n
 | GET/PATCH | `/api/v1/students/{id}` | Canonical typed values, `ETag` / `If-Match` revision checks |
 | POST | `/api/v1/students` | Create with canonical validation and generated stable code |
 | GET/POST | `/api/v1/universities` | Verified URL handling and approved portal provenance |
+| GET/POST/PATCH | `/api/v1/portals` | Preserve university relationship, purpose, URL/family provenance, active and recording/automation metadata |
 | GET/POST/PATCH | `/api/v1/applications` | Separate internal stages, verified submission evidence |
 | GET/POST/PATCH | `/api/v1/tasks` | Assignee/role checks, comments and notices |
 | GET/POST | `/api/v1/documents` | Metadata only; secure upload initiation via dedicated API |
@@ -102,3 +104,14 @@ Use UUID internal primary keys and globally unique, stable public student identi
 Persist staff/team membership, assignment history, canonical student metadata/schema version, application outcomes, requirement-policy versions, document-version review history and audit events in PostgreSQL with transactional constraints. Use separate revocable staff/student session records (store token/code hashes where appropriate), bounded expiry and transactional one-time verification consumption. Revisions, fencing lease generations, assignment changes and auditable overrides remain server-authoritative. Browser memory filters and sample expiry cannot substitute for any of these checks.
 
 UAIS Desktop should consume the same authenticated canonical student, university, task, application, document and lease endpoints. Desktop-native sign-in uses a browser-based PKCE flow and scoped API access; recording/OD-Recorder, the recording inspector, university portal intelligence and future human-supervised automation remain Desktop responsibilities. Web previews neither record workflows nor operate university browsers. Test live web/Desktop conflict, revision, canonical migration and permission behavior against the real server before real applicant use.
+
+
+### Milestone 03.5 Desktop interoperability (proposed, not connected)
+
+Student metadata follows Desktop schema 1.1: `student_id`, positive integer `revision`, managed `created_at`/`updated_at`, canonical nested sections, `referees` arrays and `documents` entries using exact catalog directories. The authoritative catalogs remain 141 definitions / 37 document categories. Nullable booleans are distinct from false; dates are ISO YYYY-MM-DD text; editable select suggestions are not closed enums. Web assignment, stage and consent-review annotations are separate workflow fields, not new canonical definitions.
+
+Import/sync must preserve every existing Desktop `STU-XXXXXXXX` public identifier and university/portal relationship. An internal UUID mapping may be created without renaming public Desktop IDs. Desktop local storage remains functional until a separately approved synchronization protocol is implemented. Desktop student Excel export is a snapshot; student import is a Web extension, not an existing Desktop capability. Server import preview/commit must enforce scope, locks, revisions, transactional validation and stale-preview rejection.
+
+The milestone UI uses only the memory repository. Its 409/412 messages simulate service outcomes; they are not server responses. The existing API transport is a foundation only. Before live wiring, define OpenAPI DTOs, authentication/CSRF, scoped permissions, ETags/leases, private document access and authoritative audits, then run integration tests against the implemented Django service. No environment switch enables live data.
+
+The Web resolver must not construct or expose Desktop local file paths. Upload resolution requires a separately authorized file service and an explicit preferred-file reference. Recorder and automation artifacts remain Desktop-owned; registry status strings cannot enable an engine or prove the existence of an artifact.
