@@ -7,7 +7,8 @@ import {
   type ReactNode,
   type ReactElement,
 } from "react";
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
+import styles from "./table.module.css";
 
 export function PaginatedTable({ children }: { children: ReactNode }) {
   const [page, setPage] = useState(1);
@@ -45,7 +46,7 @@ export function PaginatedTable({ children }: { children: ReactNode }) {
   return (
     <>
       <div
-        className="table-scroll"
+        className={styles.scroll}
         tabIndex={0}
         role="region"
         aria-label="Scrollable data table"
@@ -57,10 +58,7 @@ export function PaginatedTable({ children }: { children: ReactNode }) {
           No matching records.
         </p>
       )}
-      <nav
-        aria-label="Table pagination"
-        className="flex flex-wrap items-center justify-end gap-3 border-t p-3"
-      >
+      <nav aria-label="Table pagination" className={styles.pagination}>
         <label>
           Rows per page{" "}
           <select
@@ -76,22 +74,24 @@ export function PaginatedTable({ children }: { children: ReactNode }) {
             ))}
           </select>
         </label>
-        <span aria-live="polite">
+        <span className={styles.range} aria-live="polite">
           {total ? (current - 1) * size + 1 : 0}–
           {Math.min(current * size, total)} of {total}
         </span>
-        <Button variant="outline" size="sm"
-          className="btn btn-light"
+        <Button
+          variant="outline"
+          size="sm"
           disabled={current === 1}
           onClick={() => setPage(current - 1)}
         >
           Previous
         </Button>
-        <span>
+        <span className={styles.page}>
           Page {current} of {pages}
         </span>
-        <Button variant="outline" size="sm"
-          className="btn btn-light"
+        <Button
+          variant="outline"
+          size="sm"
           disabled={current === pages}
           onClick={() => setPage(current + 1)}
         >

@@ -18,8 +18,26 @@ export function ReportsFeature(ctx: OperationsContext) {
   return (
     <>
       <Panel
+        className="report-builder"
         title="Report builder"
         sub="Seven UAIS datasets with search, sorting, printable offline HTML and guarded CSV. Attendance is presence, not work hours."
+        actions={
+          <div className="report-export">
+            <button
+              className="desktop-button"
+              onClick={() =>
+                downloadText(
+                  "uais-seven-datasets-fictional.html",
+                  reportBundleHtml(allReports),
+                  "text/html;charset=utf-8",
+                )
+              }
+            >
+              Export all seven tabs · HTML
+            </button>
+            <small>Includes all datasets and rows.</small>
+          </div>
+        }
       >
         <div
           className="desktop-tabs"
@@ -60,24 +78,6 @@ export function ReportsFeature(ctx: OperationsContext) {
               {name}
             </button>
           ))}
-        </div>
-        <div className="desktop-toolbar">
-          <button
-            className="desktop-button"
-            onClick={() =>
-              downloadText(
-                "uais-seven-datasets-fictional.html",
-                reportBundleHtml(allReports),
-                "text/html;charset=utf-8",
-              )
-            }
-          >
-            Export all seven tabs · HTML
-          </button>
-          <span className="desktop-muted">
-            All rows in the seven-tab export; current filter applies to
-            individual exports above.
-          </span>
         </div>
         <div className="report-config">
           <Field label="Report dataset">

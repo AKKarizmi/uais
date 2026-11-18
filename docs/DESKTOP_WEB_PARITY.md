@@ -62,3 +62,11 @@ All records are fictional and memory-only. File upload/preferred-file editing/fo
 - Vercel's own build completed with Next 16.4.3. Authenticated HTTP/content checks passed for dashboard, students, student metadata, universities, Recorder, Resolver, reports and login. Anonymous access returns 302 to Vercel sign-in. These HTTP checks do not replace browser QA.
 - Previous Milestone 03 preview remains at `https://uais-7jcca785c-akkarizmis-projects.vercel.app/login`; its sign-in redirect was checked. No production promotion or protection change was made.
 - No app demo credentials: open `/login`, select a role, choose **Explore Demo Workspace**. Vercel sign-in is deployment protection, not an implemented UAIS login.
+
+## Web Operations styling follow-up
+
+The supplied Reports and Tasks screenshots exposed clipping from the dashboard's global `.table-scroll` rules: negative horizontal margins, a 250px maximum height, and a special fourth-column color/font rule. `PaginatedTable` now owns isolated CSS-module styles, so operational and staff tables no longer inherit those dashboard rules. All rows in the current page can display without an inner vertical scroll area; wide tables still scroll horizontally. Dashboard lock-table styling is preserved.
+
+The report-wide HTML export is now a panel-header action with an explicit all-rows scope. Tabs and filters have consistent insets, the filter area stacks on narrow screens, pagination uses compact controls, and mobile header actions fill their grid correctly. Operational heading/KPI typography and control heights follow the Desktop tokens. The broad form-control font reset now sets only the family, preserving explicit button font sizes.
+
+Validation: typecheck, lint, build and the existing 80 tests pass. HTTP checks passed for 12 operational/staff routes, including isolated table classes in the rendered HTML. Four browser layout/screenshot regression cases cover Reports and Tasks at 1440px and 390px; 14 browser tests are now discoverable. Browser execution remains unavailable (empty browser discovery), so rendered after-screenshots and visual confirmation are still pending.
