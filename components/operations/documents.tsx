@@ -8,20 +8,19 @@ import {
   Search,
 } from "lucide-react";
 import type { Doc } from "@/lib/operations/types";
+import { demoRepository, reviewDemoDocument } from '@/lib/operations/service';
 
 import { trimName, Pill, Panel, KPI } from "./shared";
 import type { OperationsContext } from "./workspace";
 export function DocumentsFeature(ctx: OperationsContext) {
   const {
     documents,
-    setDocuments,
     query,
     setQuery,
     statusFilter,
     setStatusFilter,
     employee,
     stu,
-    isLockedOther,
     log,
     notify,
     canonicalDocs,
@@ -119,25 +118,9 @@ export function DocumentsFeature(ctx: OperationsContext) {
                       value={d.status}
                       className="table-select"
                       onChange={(e) => {
-                        const current = stu(d.studentId);
-                        if (current && isLockedOther(current)) {
-                          notify(
-                            `Student is locked by ${employee(current.lock.ownerId)}. Review not changed.`,
-                          );
-                          return;
-                        }
-                        setDocuments((x) =>
-                          x.map((y) =>
-                            y.id === d.id
-                              ? {
-                                  ...y,
-                                  status: e.target.value as Doc["status"],
-                                  updated: "Today",
-                                }
-                              : y,
-                          ),
-                        );
-                        log("changed document review", d.id);
+                        const result=reviewDemoDocument(demoRepository,d.id,e.target.value as Doc['status'],'emp-1');
+                        notify(result.message);
+                        if(result.ok)log("changed document review", d.id);
                       }}
                     >
                       {[

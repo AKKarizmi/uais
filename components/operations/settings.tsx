@@ -1,10 +1,8 @@
 "use client";
-import type { Role } from "@/lib/operations/types";
+import { WorkspacePreview, previewDisclaimer } from '@/components/dashboard/workspace-preview';
 
 import { Pill, Panel } from "./shared";
-import type { OperationsContext } from "./workspace";
-export function SettingsFeature(ctx: OperationsContext) {
-  const { role, setRole, go } = ctx;
+export function SettingsFeature() {
   return (
     <div className="settings-grid">
       <Panel title="Interface preferences">
@@ -18,21 +16,10 @@ export function SettingsFeature(ctx: OperationsContext) {
         </div>
         <div className="settings-row">
           <div>
-            <strong>Current role preview</strong>
-            <p>This selector is not authentication or authorization.</p>
+            <strong>Workspace Preview</strong>
+            <p>{previewDisclaimer}</p>
           </div>
-          <select
-            value={role}
-            onChange={(e) => {
-              const next = e.target.value as Role;
-              setRole(next);
-              go(next === "student" ? "student-portal" : "dashboard");
-            }}
-          >
-            <option value="superuser">Superuser</option>
-            <option value="employee">Employee</option>
-            <option value="student">Student</option>
-          </select>
+          <WorkspacePreview/>
         </div>
         <div className="settings-row">
           <div>

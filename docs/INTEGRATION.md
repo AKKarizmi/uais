@@ -1,5 +1,7 @@
 # Continuation integration
 
+Milestone 03 extends this integration with `/employee-workspace` and real Workspace Preview navigation. See [Milestone 03 notes](MILESTONE_03.md) for its data rules, changed files, and verification results. Existing integration details below describe the original continuation baseline.
+
 ## Inventory and decisions
 
 The connected Git repository is `web/uais`, not the sibling extracted continuation. Its installed framework is **Next.js 16.4.3**, React 19, Tailwind 4, with App Router and existing Base UI/shadcn primitives. Before integration it had only `/` (redirect) and `/admin`. Students and administration navigation opened planned-feature dialogs; no student directory or student-detail route existed in this checkout.

@@ -7,6 +7,7 @@ import {
   type ReactNode,
   type ReactElement,
 } from "react";
+import { Button } from '@/components/ui/button';
 
 export function PaginatedTable({ children }: { children: ReactNode }) {
   const [page, setPage] = useState(1);
@@ -79,23 +80,23 @@ export function PaginatedTable({ children }: { children: ReactNode }) {
           {total ? (current - 1) * size + 1 : 0}–
           {Math.min(current * size, total)} of {total}
         </span>
-        <button
+        <Button variant="outline" size="sm"
           className="btn btn-light"
           disabled={current === 1}
           onClick={() => setPage(current - 1)}
         >
           Previous
-        </button>
+        </Button>
         <span>
           Page {current} of {pages}
         </span>
-        <button
+        <Button variant="outline" size="sm"
           className="btn btn-light"
           disabled={current === pages}
           onClick={() => setPage(current + 1)}
         >
           Next
-        </button>
+        </Button>
       </nav>
     </>
   );

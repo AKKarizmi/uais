@@ -1,4 +1,5 @@
 "use client";
+import { WorkspacePreview } from '@/components/dashboard/workspace-preview';
 import { PaginatedTable } from "./table";
 import { GraduationCap, ShieldCheck } from "lucide-react";
 
@@ -21,6 +22,7 @@ export function StudentPortalFeature(ctx: OperationsContext) {
   const docs = documents.filter((d) => d.studentId === s.id);
   return (
     <div className="student-portal">
+      <div className="mb-4 flex justify-end"><WorkspacePreview/></div>
       <div className="portal-welcome">
         <span className="portal-logo">
           <GraduationCap size={22} />

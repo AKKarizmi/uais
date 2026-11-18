@@ -1217,7 +1217,7 @@ export default function OperationsWorkspace(props: {
                     {screen === "employees" && EmployeesFeature(ctx)}
                     {screen === "attendance" && AttendanceFeature(ctx)}
                     {screen === "activity" && ActivityFeature(ctx)}
-                    {screen === "settings" && SettingsFeature(ctx)}
+                    {screen === "settings" && <SettingsFeature/>}
                     {screen === "student-portal" && StudentPortalFeature(ctx)}
                   </>
                 )}

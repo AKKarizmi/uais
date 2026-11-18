@@ -2,37 +2,38 @@
 
 import { useEffect, useState, type ReactNode } from 'react'
 import Link from 'next/link'
+import { workspacePreviews } from './workspace-preview'
 import { usePathname } from 'next/navigation'
-import { Activity, ArrowUpRight, Bell, BookOpen, Building2, CalendarCheck, ChartNoAxesCombined, ChevronDown, ChevronRight, ChevronsUpDown, CircleHelp, ClipboardList, Command, Files, FlaskConical, GraduationCap, LayoutDashboard, LockKeyhole, Menu, Moon, PanelLeftClose, Search, Settings2, ShieldCheck, Sun, Users, X } from 'lucide-react'
+import { Activity, ArrowUpRight, Bell, BookOpen, Building2, CalendarCheck, ChartNoAxesCombined, ChevronDown, ChevronRight, CircleHelp, ClipboardList, Command, Files, FlaskConical, GraduationCap, LayoutDashboard, LockKeyhole, Menu, Moon, PanelLeftClose, Search, Settings2, ShieldCheck, Sun, Users, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { mockOperationsService, type PreviewState } from '@/lib/mock/operations'
-import { DemoModeBanner, EmptyState, plannedFeature, type OpenPreview, type PreviewInfo } from './shared'
+import { DemoModeBanner, EmptyState, type OpenPreview, type PreviewInfo } from './shared'
 
 const navigation = [
   { name: 'Dashboard', icon: LayoutDashboard }, { name: 'Students', icon: GraduationCap },
   { name: 'Universities', icon: Building2 }, { name: 'Applications', icon: Files },
   { name: 'Tasks', icon: ClipboardList }, { name: 'Documents', icon: BookOpen }, { name: 'Reports', icon: ChartNoAxesCombined },
 ]
-const administration = [{ name: 'Employees', icon: Users }, { name: 'Attendance', icon: CalendarCheck }, { name: 'Activity Log', icon: Activity }, { name: 'Settings', icon: Settings2 }]
+const administration = [{ name: 'Employee Management', icon: Users }, { name: 'Attendance', icon: CalendarCheck }, { name: 'Activity Log', icon: Activity }, { name: 'Settings', icon: Settings2 }]
 
 export function SidebarNav({ onPreview, close }: { onPreview: OpenPreview; close?: () => void }) {
   const pathname=usePathname()
-  const hrefFor=(name:string)=> name==='Dashboard'?'/admin':name==='Activity Log'?'/activity':`/${name.toLowerCase().replaceAll(' ','-')}`
+  const hrefFor=(name:string)=> name==='Dashboard'?'/admin':name==='Activity Log'?'/activity':name==='Employee Management'?'/employees':`/${name.toLowerCase().replaceAll(' ','-')}`
   const navLink=({name,icon:Icon}: (typeof navigation)[number])=><Link key={name} href={hrefFor(name)} aria-current={(pathname===hrefFor(name)||pathname.startsWith(hrefFor(name)+'/'))?'page':undefined} className={`nav-item ${(pathname===hrefFor(name)||pathname.startsWith(hrefFor(name)+'/'))?'active':''}`} onClick={close}><Icon size={18}/><span>{name}</span></Link>
   return <div className="sidebar-inner">
     <Link href="/admin" className="brand" onClick={close} aria-label="UAIS Operations Hub home"><span className="brand-mark"><GraduationCap size={23} strokeWidth={1.7} /></span><span><strong>UAIS<span className="brand-web">web</span></strong><small>OPERATIONS HUB</small></span></Link>
     <div className="workspace-label"><span className="workspace-symbol">U</span><div><strong>UAIS workspace</strong><small>Demo organization</small></div><LockKeyhole size={13} /></div>
-    <nav aria-label="Main navigation"><div className="nav-label">WORKSPACE</div>{navigation.map(navLink)}<div className="nav-label administration-label">ADMINISTRATION</div>{administration.map(navLink)}<div className="nav-label">SELF SERVICE</div>{navLink({name:'Student Portal',icon:GraduationCap})}</nav>
+    <nav aria-label="Main navigation"><div className="nav-label">WORKSPACE</div>{navigation.map(navLink)}<div className="nav-label administration-label">ADMINISTRATION</div>{administration.map(navLink)}<div className="nav-label">SELF SERVICE</div>{navLink({name:'Employee Workspace',icon:Users})}{navLink({name:'Student Portal',icon:GraduationCap})}</nav>
     <div className="sidebar-bottom"><div className="preview-note"><span className="preview-note-icon"><FlaskConical size={16} /></span><strong>A workspace in the making</strong><p>Explore the foundation.<br />The possibilities come next.</p><button onClick={() => onPreview({ title: 'About this prototype', description: 'The original dashboard and new operational pages share this shell. Operational changes use memory-only fictional state; the dashboard remains a fixed demo snapshot. All people, figures, activity, and locks are fictional. The future Django API will provide authoritative records and permissions; desktop automation remains separate.' })}>About this preview <ArrowUpRight size={14} /></button></div><button className="help-button" onClick={() => onPreview({ title: 'A quick guide', description: 'Use the team and date filters to explore coordinated demo data. Search finds fictional employees, student codes, and planned sections. The profile menu includes theme and UI-state previews. Operational changes last until refresh. No real data is accepted.' })}><CircleHelp size={17} />Help & getting started<ChevronRight size={14} /></button><div className="sidebar-version"><span>UAIS Web</span><span>v0.1 · Prototype</span></div></div>
   </div>
 }
 
 function DemoProfileMenu({ onPreview, setState, onTheme, dark }: { onPreview: OpenPreview; setState: (state: PreviewState) => void; onTheme: () => void; dark: boolean }) {
-  return <DropdownMenu><DropdownMenuTrigger render={<Button variant="outline" size="lg" className="profile-trigger" aria-label="Demo profile menu" />}><span className="profile-avatar">AD</span><span className="profile-copy"><strong>Admin Demo</strong><small>Superuser</small></span><ChevronDown /></DropdownMenuTrigger><DropdownMenuContent align="end" className="w-64"><DropdownMenuGroup><DropdownMenuLabel>Demo profile · not authenticated</DropdownMenuLabel><DropdownMenuItem onClick={onTheme}>{dark ? <Sun /> : <Moon />}{dark ? 'Switch to light theme' : 'Switch to dark theme'}</DropdownMenuItem><DropdownMenuItem onClick={() => onPreview({ title: 'Demo role preview', description: 'Superuser/Admin is the only implemented interface. Employee and Student interfaces are planned. This selector does not grant permissions or simulate authentication.' })}><ShieldCheck />About role previews</DropdownMenuItem></DropdownMenuGroup><DropdownMenuSeparator /><DropdownMenuGroup><DropdownMenuLabel>UI state preview · no network request</DropdownMenuLabel>{(['ready', 'loading', 'empty', 'error'] as const).map(state => <DropdownMenuItem key={state} onClick={() => setState(state)}>{state === 'ready' ? 'Restore dashboard' : `Show ${state} state`}</DropdownMenuItem>)}</DropdownMenuGroup></DropdownMenuContent></DropdownMenu>
+  return <DropdownMenu><DropdownMenuTrigger render={<Button variant="outline" size="lg" className="profile-trigger" aria-label="Demo profile menu" />}><span className="profile-avatar">AD</span><span className="profile-copy"><strong>Demo workspace</strong><small>Not authenticated</small></span><ChevronDown /></DropdownMenuTrigger><DropdownMenuContent align="end" className="w-64"><DropdownMenuGroup><DropdownMenuLabel>Demo profile · not authenticated</DropdownMenuLabel>{workspacePreviews.map(({name,href,icon:Icon})=><DropdownMenuItem key={href} render={<Link href={href}/>}><Icon/>{name}</DropdownMenuItem>)}<DropdownMenuItem onClick={onTheme}>{dark ? <Sun /> : <Moon />}{dark ? 'Switch to light theme' : 'Switch to dark theme'}</DropdownMenuItem><DropdownMenuItem onClick={() => onPreview({ title: 'Demo role preview', description: 'Use Workspace Preview to open the Admin Dashboard, Employee Workspace, Employee Management, or Student Portal. Demo navigation only. Real user roles and permissions will be enforced by UAIS Server.' })}><ShieldCheck />About role previews</DropdownMenuItem></DropdownMenuGroup><DropdownMenuSeparator /><DropdownMenuGroup><DropdownMenuLabel>UI state preview · no network request</DropdownMenuLabel>{(['ready', 'loading', 'empty', 'error'] as const).map(state => <DropdownMenuItem key={state} onClick={() => setState(state)}>{state === 'ready' ? 'Restore dashboard' : `Show ${state} state`}</DropdownMenuItem>)}</DropdownMenuGroup></DropdownMenuContent></DropdownMenu>
 }
 
 export function TopBar({ onMenu, onSearch, onPreview, setState, onTheme, dark }: { onMenu: () => void; onSearch: () => void; onPreview: OpenPreview; setState: (state: PreviewState) => void; onTheme: () => void; dark: boolean }) {
@@ -71,6 +72,3 @@ export function AppShell({ children, state, setState }: { children: (open: OpenP
   </TooltipProvider>
 }
 
-export function RolePreview({ onPreview }: { onPreview: OpenPreview }) {
-  return <DropdownMenu><DropdownMenuTrigger render={<Button variant="outline" size="lg" />}><ShieldCheck data-icon="inline-start" /><span>Superuser view</span><ChevronsUpDown data-icon="inline-end" /></DropdownMenuTrigger><DropdownMenuContent align="end" className="w-56"><DropdownMenuGroup><DropdownMenuLabel>Visual preview · not security</DropdownMenuLabel><DropdownMenuItem onClick={() => onPreview({ title: 'Superuser/Admin', description: 'You are viewing the demo admin dashboard. No real session or permissions exist in this frontend prototype.' })}>Superuser / Admin · current</DropdownMenuItem><DropdownMenuItem onClick={() => onPreview(plannedFeature('Employee interface'))}>Employee · planned</DropdownMenuItem><DropdownMenuItem onClick={() => onPreview(plannedFeature('Student interface'))}>Student · planned</DropdownMenuItem></DropdownMenuGroup></DropdownMenuContent></DropdownMenu>
-}
