@@ -54,3 +54,11 @@ All records are fictional and memory-only. File upload/preferred-file editing/fo
 - HTTP smoke: 21 staff/public/core routes returned 200, including the original `/admin` and dynamic student details. This is server-rendering evidence, not browser execution.
 - `npm run test:browser -- --list`: 10 tests discovered in 4 files. Execution and visual checks remain pending as described above.
 - Vercel project `akkarizmis-projects/uais` inspected: preview SSO remains `all_except_custom_domains`. Deploy a new preview only; do not promote production, change protection or attach a custom domain.
+
+## Review and protected deployment
+
+- Branch: `feat/m03-5-desktop-parity`; draft [PR #3](https://github.com/AKKarizmi/uais/pull/3), stacked on PR #2.
+- Final protected preview: [open Desktop dashboard](https://uais-g1olmkf5p-akkarizmis-projects.vercel.app/dashboard). Vercel deployment `dpl_8B5bijfH32LTjz8AiuzNBYCGVhhD` is `READY`, from code commit `d5503b8a5b8b14982f822f811d6ea8d89beee450`, with no production target.
+- Vercel's own build completed with Next 16.4.3. Authenticated HTTP/content checks passed for dashboard, students, student metadata, universities, Recorder, Resolver, reports and login. Anonymous access returns 302 to Vercel sign-in. These HTTP checks do not replace browser QA.
+- Previous Milestone 03 preview remains at `https://uais-7jcca785c-akkarizmis-projects.vercel.app/login`; its sign-in redirect was checked. No production promotion or protection change was made.
+- No app demo credentials: open `/login`, select a role, choose **Explore Demo Workspace**. Vercel sign-in is deployment protection, not an implemented UAIS login.
