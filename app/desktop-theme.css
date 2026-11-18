@@ -765,6 +765,12 @@ textarea,
   }
 }
 @media (max-width: 700px) {
+  /* Two pinned columns can cover a phone's entire usable grid width. */
+  .desktop-sheet th:nth-child(3),
+  .desktop-sheet td:nth-child(3) {
+    position: static !important;
+    z-index: auto !important;
+  }
   .desktop-content {
     padding: 18px 12px;
   }

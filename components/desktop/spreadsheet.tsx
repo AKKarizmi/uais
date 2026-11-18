@@ -322,7 +322,7 @@ export function Spreadsheet<T extends { id: string }>({
       <p className="sheet-help">
         Arrows / Tab: move · F2 / Enter: edit · Shift+arrows: range ·
         Shift+Space: select row · Ctrl/Cmd+C / V: copy / paste · First two
-        columns frozen. Double-click ID to open metadata.
+        columns frozen on wide screens. Double-click ID to open metadata.
       </p>
       <div className="sheet-scroll">
         <table
