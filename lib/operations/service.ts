@@ -1,4 +1,5 @@
 import * as seed from "./mock";
+import { portalSeeds } from "@/lib/desktop/universities";
 import type {
   Student,
   University,
@@ -9,6 +10,7 @@ import type {
   Activity,
   TaskStatus,
   DocumentStatus,
+  Portal,
 } from "./types";
 
 export type Collections = {
@@ -19,6 +21,7 @@ export type Collections = {
   employees: Employee[];
   documents: Doc[];
   activity: Activity[];
+  portals: Portal[];
 };
 export interface DemoRepository {
   readonly mode: "demo";
@@ -35,6 +38,7 @@ export function createDemoRepository(): DemoRepository {
     employees: seed.employees,
     documents: seed.documents,
     activity: seed.activity,
+    portals: portalSeeds(seed.universities),
   });
   const listeners = new Map<keyof Collections, Set<() => void>>();
   return {
@@ -144,19 +148,17 @@ export function reviewDemoDocument(
       Number(status === "Verified") - Number(doc.status === "Verified");
     repository.replace(
       "students",
-      repository
-        .read("students")
-        .map((s) =>
-          s.id === student.id
-            ? {
-                ...s,
-                documentsVerified: Math.max(
-                  0,
-                  Math.min(s.documentsRequired, s.documentsVerified + delta),
-                ),
-              }
-            : s,
-        ),
+      repository.read("students").map((s) =>
+        s.id === student.id
+          ? {
+              ...s,
+              documentsVerified: Math.max(
+                0,
+                Math.min(s.documentsRequired, s.documentsVerified + delta),
+              ),
+            }
+          : s,
+      ),
     );
   }
   return {

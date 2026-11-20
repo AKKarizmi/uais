@@ -59,3 +59,29 @@ export function csvText(columns: string[], rows: ReportRow[]): string {
     ].join("\r\n")
   );
 }
+
+/** Seven generic UAIS datasets; SDM admission-specific rules are deliberately absent. */
+export function reportBundleHtml(
+  datasets: Record<string, { columns: string[]; rows: ReportRow[] }>,
+): string {
+  const entries = Object.entries(datasets);
+  const tabs = entries
+    .map(
+      ([name], i) =>
+        `<button role="tab" id="tab-${i}" aria-controls="panel-${i}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" data-index="${i}">${escapeHtml(name)}</button>`,
+    )
+    .join("");
+  const panels = entries
+    .map(
+      ([name, data], i) =>
+        `<section role="tabpanel" id="panel-${i}" aria-labelledby="tab-${i}" ${i ? "hidden" : ""}><h2>${escapeHtml(name)}</h2><label>Search ${escapeHtml(name)} <input aria-label="Search ${escapeHtml(name)}" type="search"></label><p class="count">${data.rows.length} rows</p><div class="scroll"><table><thead><tr>${data.columns.map((c) => `<th scope="col" aria-sort="none"><button>${escapeHtml(c)}</button></th>`).join("")}</tr></thead><tbody>${data.rows.map((row) => `<tr>${data.columns.map((c) => `<td>${escapeHtml(row[c])}</td>`).join("")}</tr>`).join("")}</tbody></table></div></section>`,
+    )
+    .join("");
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>UAIS fictional operations report</title><style>body{margin:0;background:#f5f7fb;color:#101828;font:14px 'Segoe UI',Arial,sans-serif}main{max-width:1400px;margin:auto;padding:28px}h1{font-size:26px}.notice{padding:14px;background:#fffaeb;border:1px solid #fedf89;border-radius:8px}nav{display:flex;gap:5px;overflow:auto;padding:16px 0}button,input{font:inherit;border:1px solid #d0d5dd;border-radius:6px;background:white;padding:8px 12px;color:#101828;cursor:pointer}button[aria-selected=true]{background:#175cd3;color:white}section{background:white;padding:20px;border:1px solid #eaecf0;border-radius:10px}.scroll{overflow:auto}table{border-collapse:collapse;width:100%}th,td{text-align:left;padding:10px;border-bottom:1px solid #eaecf0;white-space:nowrap}th{background:#f5f7fb}th button{border:0;background:none;padding:0;font-weight:600}input{cursor:text}button:focus-visible,input:focus-visible{outline:2px solid #2563eb;outline-offset:2px}[hidden]{display:none!important}@media print{nav,input,.print{display:none}main{padding:0}.scroll{overflow:visible}td,th{white-space:normal}}</style></head><body><main><h1>UAIS operations report</h1><p class="notice">Fictional data only. This self-contained file has no authentication or permission protection. Do not include real applicant data. Attendance counts logins and last seen; it does not measure work hours.</p><button class="print" id="print">Print current tab</button><nav role="tablist" aria-label="Report datasets">${tabs}</nav>${panels}</main><script>
+  const tabs=[...document.querySelectorAll('[role=tab]')], panels=[...document.querySelectorAll('[role=tabpanel]')];
+  function activate(i){tabs.forEach((t,j)=>{t.setAttribute('aria-selected',String(i===j));t.tabIndex=i===j?0:-1;panels[j].hidden=i!==j});tabs[i].focus()}
+  tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>activate(i));tab.addEventListener('keydown',e=>{let n=e.key==='ArrowRight'?(i+1)%tabs.length:e.key==='ArrowLeft'?(i+tabs.length-1)%tabs.length:e.key==='Home'?0:e.key==='End'?tabs.length-1:null;if(n!==null){e.preventDefault();activate(n)}})});
+  panels.forEach(panel=>{const body=panel.querySelector('tbody'),rows=[...body.rows],search=panel.querySelector('input'),count=panel.querySelector('.count');search.addEventListener('input',()=>{let n=0;rows.forEach(row=>{row.hidden=!row.textContent.toLowerCase().includes(search.value.toLowerCase());if(!row.hidden)n++});count.textContent=n+' rows'});panel.querySelectorAll('th').forEach((th,i)=>{let ascending=true;th.querySelector('button').addEventListener('click',()=>{[...body.rows].sort((a,b)=>a.cells[i].textContent.localeCompare(b.cells[i].textContent,undefined,{numeric:true})*(ascending?1:-1)).forEach(row=>body.appendChild(row));panel.querySelectorAll('th').forEach(h=>h.setAttribute('aria-sort','none'));th.setAttribute('aria-sort',ascending?'ascending':'descending');ascending=!ascending})})});
+  document.querySelector('#print').addEventListener('click',()=>window.print());
+  </script></body></html>`;
+}

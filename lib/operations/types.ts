@@ -40,6 +40,22 @@ export type Student = {
   updated: string;
   lock: Lock;
   fields: Record<string, string | boolean | number | null>;
+  /** Actual Desktop schema 1.1 metadata; optional only for legacy demo fixtures. */
+  metadata?: Record<string, unknown>;
+  revision?: number;
+};
+export type Portal = {
+  id: string;
+  universityId: string;
+  name: string;
+  purpose: string;
+  url: string;
+  family: string;
+  familySource: "auto" | "manual";
+  active: boolean;
+  recordingStatus: string;
+  automationStatus: string;
+  notes: string;
 };
 export type University = {
   id: string;
@@ -53,6 +69,8 @@ export type University = {
   intake: string;
   active: boolean;
   initials: string;
+  city?: string;
+  notes?: string;
 };
 export type Application = {
   id: string;

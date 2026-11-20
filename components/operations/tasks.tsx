@@ -2,7 +2,7 @@
 import { PaginatedTable } from "./table";
 import { Search } from "lucide-react";
 import type { TaskStatus } from "@/lib/operations/types";
-import { demoRepository, updateDemoTaskStatus } from '@/lib/operations/service';
+import { demoRepository, updateDemoTaskStatus } from "@/lib/operations/service";
 
 import { TASK_STATUSES, trimName, Pill, Panel } from "./shared";
 import type { OperationsContext } from "./workspace";
@@ -44,12 +44,14 @@ export function TasksFeature(ctx: OperationsContext) {
         <div className="view-toggle">
           <button
             className={taskView === "table" ? "selected" : ""}
+            aria-pressed={taskView === "table"}
             onClick={() => setTaskView("table")}
           >
             Table
           </button>
           <button
             className={taskView === "board" ? "selected" : ""}
+            aria-pressed={taskView === "board"}
             onClick={() => setTaskView("board")}
           >
             Board
@@ -130,7 +132,11 @@ export function TasksFeature(ctx: OperationsContext) {
                         aria-label={`Status of ${t.title}`}
                         value={t.status}
                         onChange={(e) => {
-                          updateDemoTaskStatus(demoRepository, t.id, e.target.value as TaskStatus);
+                          updateDemoTaskStatus(
+                            demoRepository,
+                            t.id,
+                            e.target.value as TaskStatus,
+                          );
                           log("updated task status", t.id);
                         }}
                       >
@@ -172,7 +178,13 @@ export function TasksFeature(ctx: OperationsContext) {
                     <select
                       value={t.status}
                       aria-label={`Move ${t.title}`}
-                      onChange={(e) => updateDemoTaskStatus(demoRepository, t.id, e.target.value as TaskStatus)}
+                      onChange={(e) =>
+                        updateDemoTaskStatus(
+                          demoRepository,
+                          t.id,
+                          e.target.value as TaskStatus,
+                        )
+                      }
                     >
                       {TASK_STATUSES.map((s) => (
                         <option key={s}>{s}</option>

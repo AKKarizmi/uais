@@ -1,2 +1,4 @@
-import OperationsWorkspace from '@/components/operations/workspace'
-export default function Page() { return <OperationsWorkspace screen="students" /> }
+import { StudentsWorkspace } from "@/components/desktop/students-workspace";
+export default function Page() {
+  return <StudentsWorkspace />;
+}

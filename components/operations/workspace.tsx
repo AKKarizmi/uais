@@ -50,6 +50,9 @@ import {
 } from "@/lib/operations/reports";
 import fieldsCatalog from "@/lib/operations/canonical-fields.json";
 import documentsCatalog from "@/lib/operations/canonical-documents.json";
+import { portalSeeds, universityRows } from "@/lib/desktop/universities";
+import type { Portal } from "@/lib/operations/types";
+const seedPortals = portalSeeds(seedUniversities);
 
 import {
   trimName,
@@ -88,6 +91,7 @@ export function useOperationsModel({
     "applications",
     seedApplications,
   );
+  const [portals] = useDemoState<Portal[]>("portals", seedPortals);
   const [tasks, setTasks] = useDemoState<Task[]>("tasks", seedTasks);
   const [employees, setEmployees] = useDemoState<Employee[]>(
     "employees",
@@ -481,6 +485,39 @@ export function useOperationsModel({
         Status: d.status,
         Reviewer: employee(d.reviewer),
         Updated: d.updated,
+      })),
+    },
+    Universities: {
+      columns: [
+        "University",
+        "Portal",
+        "Country",
+        "Family",
+        "Recording",
+        "Automation",
+        "Active",
+      ],
+      rows: universityRows(universities, portals).map(
+        ({ university: u, portal: p }) => ({
+          University: u.name,
+          Portal: p?.url ?? "",
+          Country: u.country,
+          Family: p?.family ?? "Unclassified",
+          Recording: p?.recordingStatus ?? "not_recorded",
+          Automation: p?.automationStatus ?? "none",
+          Active: u.active ? "Yes" : "No",
+        }),
+      ),
+    },
+    Employees: {
+      columns: ["Employee", "Team", "Role", "Active", "Assigned students"],
+      rows: employees.map((e) => ({
+        Employee: e.name,
+        Team: e.team,
+        Role: e.role,
+        Active: e.active ? "Yes" : "No",
+        "Assigned students": students.filter((s) => s.assignedTo === e.id)
+          .length,
       })),
     },
   };

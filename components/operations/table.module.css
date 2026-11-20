@@ -1,0 +1,110 @@
+/* Paginated operational tables must not inherit the dashboard's inset scroll area. */
+.scroll {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+.scroll table {
+  width: 100%;
+  min-width: 790px;
+  border-collapse: collapse;
+  text-align: start;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--foreground);
+}
+
+.scroll th,
+.scroll td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.scroll th {
+  background: var(--canvas-soft);
+  color: var(--muted-foreground);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: normal;
+}
+
+.scroll tbody tr:hover {
+  background: var(--accent);
+}
+
+.scroll tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.scroll td > small {
+  display: block;
+  max-width: 36ch;
+  margin-top: 4px;
+  color: var(--muted-foreground);
+  font-size: 11px;
+  white-space: normal;
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: 11px;
+}
+
+.pagination label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.pagination select {
+  min-width: 56px;
+  min-height: 32px;
+  padding: 4px 6px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--card);
+  color: var(--foreground);
+  font: inherit;
+}
+
+.pagination button {
+  min-height: 32px;
+  font-size: 11px;
+}
+
+.range {
+  margin-inline-end: auto;
+}
+
+.page {
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .pagination {
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .range {
+    flex: 1;
+    text-align: end;
+  }
+
+  .page {
+    margin-inline: auto;
+  }
+}
